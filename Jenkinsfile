@@ -8,7 +8,7 @@ pipeline {
         SCRIPTS_REPO = 'https://github.com/haomingyin/namecheap-DDNS.git'
     }
     triggers {
-        cron('*/10 * * * *')
+        cron('H H * * *')
     }
     stages {
         stage('Pull Script') {
@@ -23,6 +23,19 @@ pipeline {
         stage('Update DDNS Record - mac') {
             environment {
                 HOST = 'mac'
+            }
+            steps {
+                script {
+                    dir('scripts') {
+                        sh "./updateDNS.sh"
+                    }
+                }
+            }
+        }
+
+        stage("Update DDNS Record - jenkins") {
+            environment {
+                HOST = 'jenkins'
             }
             steps {
                 script {
