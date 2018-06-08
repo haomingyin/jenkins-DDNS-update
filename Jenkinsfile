@@ -13,8 +13,8 @@ pipeline {
     stages {
         stage('Pull Script') {
             when {
-                branch {
-                    not 'PR-'
+                not {
+                    branch 'PR-*'
                 }
             }
             steps {
@@ -27,8 +27,8 @@ pipeline {
 
         stage('Update DDNS Record - mac') {
             when {
-                branch {
-                    not 'PR-'
+                not {
+                    branch 'PR-*'
                 }
             }
             environment {
@@ -45,8 +45,8 @@ pipeline {
 
         stage("Update DDNS Record - jenkins") {
             when {
-                branch {
-                    not 'PR-'
+                not {
+                    branch 'PR-*'
                 }
             }
             environment {
