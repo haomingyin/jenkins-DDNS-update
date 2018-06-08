@@ -12,6 +12,11 @@ pipeline {
     }
     stages {
         stage('Pull Script') {
+            when {
+                branch {
+                    not 'PR-'
+                }
+            }
             steps {
                 script {
                     sh "mkdir scripts"
@@ -21,8 +26,13 @@ pipeline {
         }
 
         stage('Update DDNS Record - mac') {
+            when {
+                branch {
+                    not 'PR-'
+                }
+            }
             environment {
-                HOST = 'mac'
+                HOST = '*'
             }
             steps {
                 script {
@@ -34,6 +44,11 @@ pipeline {
         }
 
         stage("Update DDNS Record - jenkins") {
+            when {
+                branch {
+                    not 'PR-'
+                }
+            }
             environment {
                 HOST = 'jenkins'
             }
