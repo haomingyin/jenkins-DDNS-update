@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'master'
+        label 'pi'
     }
     environment {
         DOMAIN_NAME = 'haomingyin.com'
